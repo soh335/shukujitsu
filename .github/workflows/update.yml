@@ -1,0 +1,27 @@
+name: update
+on:
+  schedule:
+    - cron: "29 0,9 * * *"
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: update
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup go
+        uses: actions/setup-go@v2
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: update
+        run: |
+          go run ./internal/gen/gen.go
+          git diff --exit-code --quiet && exit
+          git add dates.go
+          git config --global user.email sugarbabe335@gmail.com
+          git config --global user.name soh335
+          git commit -m 'update dates.go'
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: update dates.go
