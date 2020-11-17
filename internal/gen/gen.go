@@ -32,10 +32,10 @@ func _main() error {
 		if err != nil {
 			return err
 		}
+		defer res.Body.Close()
 		if res.StatusCode != http.StatusOK {
 			return fmt.Errorf("status code:%d", res.StatusCode)
 		}
-		defer res.Body.Close()
 		src = res.Body
 	} else {
 		f, err := os.Open(os.Args[1])
