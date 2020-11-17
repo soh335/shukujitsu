@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"go/format"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -21,6 +22,7 @@ func main() {
 	if err := _main(); err != nil {
 		log.Fatal(err)
 	}
+	fmt.Printf("created %s\n", *output)
 }
 
 func _main() error {
@@ -73,18 +75,5 @@ func _main() error {
 	if err != nil {
 		return err
 	}
-
-	of, err := os.Create(*output)
-	if err != nil {
-		return err
-	}
-
-	if _, err := of.Write(formated); err != nil {
-		return err
-	}
-
-	defer func() {
-		fmt.Printf("created %s\n", *output)
-	}()
-	return of.Close()
+	return ioutil.WriteFile(*output, formated, 0644)
 }
