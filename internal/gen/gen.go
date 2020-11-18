@@ -29,8 +29,14 @@ func _main() error {
 	var src io.Reader
 	if len(os.Args) == 1 {
 		u := "https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv"
+		req, err := http.NewRequest("GET", u, nil)
+		if err != nil {
+			return err
+		}
+		req.Header.Set("User-Agent", "https://github.com/soh335/shukujitsu")
+
 		fmt.Printf("download %s\n", u)
-		res, err := http.Get(u)
+		res, err := http.DefaultClient.Do(req)
 		if err != nil {
 			return err
 		}
