@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-// IsShukujitsu datermin shukujitsu.
+// IsShukujitsu determines shukujitsu.
 // This function don't care timezone of arguments time.
 // So you need to care your timezone.
 func IsShukujitsu(t time.Time) bool {
