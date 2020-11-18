@@ -11,6 +11,8 @@ When csv is updated, you can updated as follow command.
 $ go run ./internal/gen/gen.go
 ```
 
+Currently, we check it per week at [here](https://github.com/soh335/shukujitsu/actions?query=workflow%3Aupdate).
+
 ## HOW TO USE
 
 ```go
