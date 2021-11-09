@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"go/format"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -81,5 +80,5 @@ func _main() error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(*output, formated, 0644)
+	return os.WriteFile(*output, formated, 0644)
 }
