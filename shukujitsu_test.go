@@ -33,7 +33,7 @@ func TestIsShukujitsu(t *testing.T) {
 
 	for _, s := range specs {
 		if IsShukujitsu(s.Input) != s.Expect {
-			t.Errorf("IsShukujitsu(%s) epxect %v", s.Input, s.Expect)
+			t.Errorf("IsShukujitsu(%s) expect %v", s.Input, s.Expect)
 		}
 	}
 }
