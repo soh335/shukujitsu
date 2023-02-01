@@ -27,7 +27,7 @@ func main() {
 func _main() error {
 	var src io.Reader
 	if len(os.Args) == 1 {
-		u := "https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv"
+		u := "https://www8.cao.go.jp/chosei/shukujitsu/shukujitsu.csv"
 		req, err := http.NewRequest("GET", u, nil)
 		if err != nil {
 			return err
