@@ -1,0 +1,22 @@
+name: Keepalive
+
+on:
+  schedule:
+    # JST 09:00 毎月1日・15日 = UTC 00:00
+    - cron: "0 0 1,15 * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enable workflows
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow enable update.yml --repo ${{ github.repository }}
+          gh workflow enable keepalive.yml --repo ${{ github.repository }}
